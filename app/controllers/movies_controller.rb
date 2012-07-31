@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @ratings = params[:ratings]
     @order = params[:order] if Movie.column_names.include? params[:order]
     @movies = Movie.all(:order => @order)
   end
