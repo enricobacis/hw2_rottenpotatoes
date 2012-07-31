@@ -8,9 +8,9 @@ class MoviesController < ApplicationController
 
   def index
     @order = params[:order] if Movie.column_names.include? params[:order]
-    @movies = Movie.all(:order => @order)
-    @ratings = params[:ratings]
+    @ratings = params[:ratings] # define @ratings (because of this @ratings is always defined)
     @all_ratings = Movie.all_ratings
+    @movies = Movie.find(:all, :conditions => {:rating => @ratings}, :order => @order)
   end
 
   def new
