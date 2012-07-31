@@ -7,7 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @order = params[:order] if Movie.column_names.include? params[:order]
+    @movies = Movie.all(:order => @order)
   end
 
   def new
