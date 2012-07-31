@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
     @movies = Movie.all(:order => @order)
     @ratings = params[:ratings]
     @all_ratings = Movie.all_ratings
-    
   end
 
   def new

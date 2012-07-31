@@ -1,11 +1,10 @@
 class Movie < ActiveRecord::Base
   def method_missing(method_id)
-    /^all_(\w*)s$/.match(method_id.to_s) do |column|
-      if self.column_names.include? column
-        self.select(column).group(column).map{|t| t.send(column)}
-      else
-        super
-      end
+    /^all_(\w*)s$/.match(method_id.to_s)
+    if self.column_names.include? $1
+      self.select($1).group($1).map{|t| t.send($1)}
+    else
+      super
     end
   end
 end
