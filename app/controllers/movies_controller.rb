@@ -9,8 +9,8 @@ class MoviesController < ApplicationController
   def index
     @order = params[:order] if Movie.column_names.include? params[:order]
     @ratings = params[:ratings].select{|k,v| v == "1"} unless params[:ratings].nil?
-    if @order == nil && @ratings == nil do
-      if session[:order] != nil || session[:ratings] != nil do
+    if @order.nil? && @ratings.nil?
+      if !session[:order].nil? || !session[:ratings].nil?
         flash.keep
         return redirect_to movies_path, :order => session[:order], :ratings => session[:ratings]
       end
