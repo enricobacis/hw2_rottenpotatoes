@@ -12,7 +12,7 @@ class MoviesController < ApplicationController
     if @order.nil? && @ratings.nil?
       if !session[:order].nil? || !session[:ratings].nil?
         flash.keep
-        return redirect_to movies_path, :order => session[:order], :ratings => session[:ratings]
+        return redirect_to movies_path(:order => session[:order], :ratings => session[:ratings])
       end
     end
     session[:order] = @order ; session[:ratings] = @ratings
